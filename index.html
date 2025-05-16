@@ -113,7 +113,7 @@
       .main-content {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 40px 0;
+        padding: 40px 0px 40px 0px;
       }
 
       .article-header {
@@ -367,6 +367,47 @@
         margin-right: 16px;
       }
 
+      /* custom mobile dropdown */
+      .mobile-nav-toggle {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        color: #555;
+        font-size: 14px;
+        position: relative;
+      }
+      .mobile-nav-toggle i {
+        transition: transform 0.2s;
+        transform-origin: center center;
+        /* reduce chevron-down size */
+        font-size: 12px;
+      }
+      .mobile-dropdown {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 150px;
+        z-index: 10;
+      }
+      .mobile-dropdown a {
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #555;
+      }
+      .mobile-dropdown a:hover {
+        background: #f5f5f7;
+        color: #3366ff;
+      }
+      .mobile-pricing {
+        display: none;
+      }
+
       @media (max-width: 768px) {
         .article-cards {
           grid-template-columns: repeat(2, 1fr);
@@ -374,12 +415,12 @@
         }
 
         .article-meta {
-          flex-direction: column;
-          align-items: flex-start;
+          flex-direction: row;
+          align-items: center;
         }
 
         .read-time {
-          margin-top: 10px;
+          margin-top: 0;
         }
 
         .footer-bottom {
@@ -399,6 +440,11 @@
         .article-title {
           font-size: 28px;
         }
+
+        /* remove top padding on main content */
+        .main-content {
+          padding-top: 0;
+        }
       }
 
       @media (max-width: 576px) {
@@ -407,8 +453,17 @@
         }
 
         .nav-links {
+          display: none;
+        }
+
+        .mobile-nav-toggle {
           display: flex;
-          gap: 20px;
+        }
+        .mobile-pricing {
+          display: inline-block;
+          margin-left: 12px;
+          font-size: 14px;
+          color: #555;
         }
 
         /* hide Product on mobile */
@@ -446,6 +501,17 @@
               ><span class="calyo-text">calyo</span
               ><span class="logo-dot">.ai</span></a
             >
+            <!-- mobile nav toggle + dropdown -->
+            <div class="mobile-nav-toggle">
+              Navigation <i class="fa fa-chevron-down"></i>
+              <div class="mobile-dropdown">
+                <a href="#">Product</a>
+                <a href="#">Features</a>
+                <a href="#">Testimonials</a>
+              </div>
+            </div>
+            <a href="#" class="mobile-pricing">Pricing</a>
+
             <div class="nav-links">
               <a href="#">Product</a>
               <a href="#">Features</a>
@@ -477,7 +543,7 @@
                 <div class="author-avatar"></div>
                 <div class="author-details">
                   <span class="author-name">Jack Reacher</span> •
-                  <span class="post-date">14 April, 2025</span>
+                  <span class="post-date">14 April 2025</span>
                 </div>
               </div>
               <div class="read-time">5 mins read</div>
@@ -595,7 +661,7 @@
                     accusamus et iusto odio...
                   </p>
                   <div class="card-meta">
-                    <span>apr 12, 2025</span>
+                    <span>12 April 2025</span>
                     <span>5 mins read</span>
                   </div>
                 </div>
@@ -615,7 +681,7 @@
                     accusamus et iusto odio...
                   </p>
                   <div class="card-meta">
-                    <span>apr 12, 2025</span>
+                    <span>12 April 2025</span>
                     <span>5 mins read</span>
                   </div>
                 </div>
@@ -635,7 +701,7 @@
                     accusamus et iusto odio...
                   </p>
                   <div class="card-meta">
-                    <span>apr 12, 2025</span>
+                    <span>12 April 2025</span>
                     <span>5 mins read</span>
                   </div>
                 </div>
@@ -665,7 +731,6 @@
         >
           <div class="footer-nav-links">
             <a href="#">How it works</a>
-            <a href="#">Features</a>
             <a href="#">Pricing</a>
             <a href="#">Blog</a>
           </div>
@@ -726,6 +791,17 @@
           ) {
             link.classList.add("active");
           }
+        });
+
+        // mobile dropdown toggle
+        const toggle = document.querySelector(".mobile-nav-toggle");
+        const menu = document.querySelector(".mobile-dropdown");
+        toggle?.addEventListener("click", () => {
+          const isOpen = getComputedStyle(menu).display === "flex";
+          menu.style.display = isOpen ? "none" : "flex";
+          toggle.querySelector("i").style.transform = isOpen
+            ? ""
+            : "rotate(180deg)";
         });
       });
     </script>
