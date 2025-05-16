@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clay.ai - Call Assistant AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #3366ff;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5f5f7;
+            border-radius: 50px;
+            padding: 8px 8px 8px 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .logo-dot {
+            color: #3366ff;
+        }
+        
+        .clay-text {
+            color: #3366ff;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .btn-download {
+            background-color: #3366ff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .article-header {
+            margin-bottom: 30px;
+        }
+        
+        .article-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .author-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #777;
+            margin-right: 15px;
+        }
+        
+        .author-details {
+            font-size: 14px;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .post-date {
+            color: #777;
+        }
+        
+        .read-time {
+            font-size: 14px;
+            color: #3366ff;
+        }
+        
+        .article-content {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .feature-image {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .feature-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        .feature-section {
+            margin: 40px 0;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section {
+            margin: 40px 0;
+        }
+        
+        .read-more {
+            margin: 60px 0 40px;
+        }
+        
+        .read-more-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .article-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .article-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+        
+        .card-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 24px;
+            /* Added padding and border-radius for card images */
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: #333;
+        }
+        
+        .card-excerpt {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #999;
+            margin-top: 15px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #f9f9f9;
+            padding: 40px 0 30px;
+            margin-top: 60px;
+            text-align: center; /* Added center alignment for footer */
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+            text-align: center; /* Center align the logo */
+        }
+        
+        .footer-logo a {
+            font-size: 18px;
+            font-weight: 700;
+            color: #3366ff;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .footer-nav a {
+            color: #3366ff;
+            font-size: 16px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-social a {
+            color: #555;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: #3366ff;
+            color: white;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: center; /* Changed to center alignment */
+            flex-direction: column; /* Changed to column for better centering */
+            align-items: center; /* Center alignment for column direction */
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px; /* Added margin for spacing */
+        }
+        
+        @media (max-width: 768px) {
+            .article-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .read-time {
+                margin-top: 10px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+            
+            .feature-title {
+                font-size: 22px;
+            }
+            
+            .article-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .article-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-container {
+                justify-content: space-between;
+                padding: 8px 15px;
+            }
+            
+            .footer-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px 30px;
+            }
+            
+            .feature-title {
+                font-size: 20px;
+            }
+            
+            .article-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="nav-container">
+                    <a href="#" class="logo"><span class="clay-text">clay</span><span class="logo-dot">.ai</span></a>
+                    <div class="nav-links">
+                        <a href="#">product</a>
+                        <a href="#">features</a>
+                        <a href="#">testimonials</a>
+                        <a href="#">pricing</a>
+                    </div>
+                    <button class="btn-download">download</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="container">
+            <article>
+                <div class="article-header">
+                    <h1 class="article-title">Call assistant AI – take call management to the next level with Auto-screen and secretary mode</h1>
+                    <p>Lorem ipsum sample text body copy here at vero eos et accusamus.</p>
+                    <div class="article-meta">
+                        <div class="author-info">
+                            <div class="author-avatar"></div>
+                            <div class="author-details">
+                                <span class="author-name">Jack Reacher</span> • <span class="post-date">14 April, 2025</span>
+                            </div>
+                        </div>
+                        <div class="read-time">5 mins read</div>
+                    </div>
+                </div>
+                
+                <div class="article-content">
+                    <p>I'm so thrilled about this new test update from Call Assistant AI. Original article from Call Assistant AI Blog post is today 1 test packed world, managing incoming calls can be a draining task. Spam calls, telemarketers, and unknown numbers can disrupt our workdays, interrupt important conversations, and leave us feeling frustrated. To address these challenges, the innovative Call Assistant AI app has unveiled two new features that revolutionize call management: Auto-Screen and Secretary Mode.</p>
+                    
+                    <div class="feature-image">
+                        <img src="/api/placeholder/800/400" alt="Call Assistant AI Features" />
+                    </div>
+                    
+                    <div class="feature-section">
+                        <h2 class="feature-title">Auto-Screen: Intelligent Call Screening</h2>
+                        <p>The Auto-Screen feature eliminates the hassle of answering unwanted calls. When enabled, the app automatically screens calls from numbers not saved in your contacts list. You can customize the Auto-Screen timeout, allowing you to decide whether the app should screen the call immediately or a few seconds after it rings, giving you the chance to answer if needed.</p>
+                        
+                        <p>Auto-Screen leverages screening mechanisms based on Call Assistant AI's vast knowledge of spam and telemarketer calling patterns. The app proactively identifies these types of calls and diverts them to voicemail, preventing unnecessary interruptions. This feature saves you time by helping you avoid calls from unknown callers or businesses, saving you time and frustration.</p>
+                    </div>
+                    
+                    <div class="feature-section">
+                        <h2 class="feature-title">Secretary Mode: Personalized Call Handling</h2>
+                        <p>The Auto-Screen feature eliminates the hassle of answering unwanted calls. When enabled, the app automatically screens calls from numbers not saved in your contacts list. You can customize the Auto-Screen timeout, allowing you to decide whether the app should screen the call immediately or a few seconds after it rings, giving you the chance to answer if needed.</p>
+                        
+                        <p>With Secretary Mode, you're empowered to make informed decisions about whether to answer a call, without having to spend time engaging with unknown or potentially unwanted callers. This feature grants you greater control over your experience, maximizing your productivity and minimizing distractions.</p>
+                    </div>
+                    
+                    <div class="feature-section">
+                        <h2 class="feature-title">Elevate Your Call Management with Call Assistant AI</h2>
+                        <p>The combination of Auto-Screen and Secretary Mode marks a significant advancement in call management technology. These innovative features seamlessly integrate with Call Assistant AI's existing functionality, providing a holistic solution to the challenges of managing calls.</p>
+                        
+                        <p>By automating call screening, Call Assistant AI reduces the burden of answering unwanted calls. With Secretary Mode, your important calls are prioritized, you gain control over incoming calls, ensuring that you're only engaged with those that matter. These features empower you to take charge of your phone experience, enhancing your productivity and reducing stress.</p>
+                        
+                        <p>Embrace the future of call management with Call Assistant AI. Download the app today and experience the convenience of Auto-Screen and Secretary Mode, transforming your phone calls into a seamless and productive.</p>
+                    </div>
+                </div>
+                
+                <div class="read-more">
+                    <h3 class="read-more-title">read more</h3>
+                    <div class="article-cards">
+                        <div class="article-card">
+                            <div class="card-image">
+                                <img src="/api/placeholder/400/200" alt="AI Screening Article" />
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">How ai screening is revolutionizing small business communication</h4>
+                                <p class="card-excerpt">Lorem ipsum sample text body copy here at vero eos et accusamus et iusto odio...</p>
+                                <div class="card-meta">
+                                    <span>apr 12, 2025</span>
+                                    <span>5 mins read</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-card">
+                            <div class="card-image">
+                                <img src="/api/placeholder/400/200" alt="AI Screening Article" />
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">How ai screening is revolutionizing small business communication</h4>
+                                <p class="card-excerpt">Lorem ipsum sample text body copy here at vero eos et accusamus et iusto odio...</p>
+                                <div class="card-meta">
+                                    <span>apr 12, 2025</span>
+                                    <span>5 mins read</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article-card">
+                            <div class="card-image">
+                                <img src="/api/placeholder/400/200" alt="AI Screening Article" />
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">How ai screening is revolutionizing small business communication</h4>
+                                <p class="card-excerpt">Lorem ipsum sample text body copy here at vero eos et accusamus et iusto odio...</p>
+                                <div class="card-meta">
+                                    <span>apr 12, 2025</span>
+                                    <span>5 mins read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="#" class="logo"><span class="clay-text">clay</span><span class="logo-dot">.ai</span></a>
+            </div>
+            
+            <div class="footer-nav">
+                <a href="#">how it works</a>
+                <a href="#">features</a>
+                <a href="#">pricing</a>
+                <a href="#">blog</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>  
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="footer-bottom">
+                <div>
+                    <p>Copyright © 2025, Andrea Labs</p>
+                    <p>All rights reserved.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">terms & conditions</a>
+                    <a href="#">privacy policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for handling basic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add active class to current nav item
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (currentPath === linkPath || (currentPath.includes(linkPath) && linkPath !== '#')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
