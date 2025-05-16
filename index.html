@@ -407,6 +407,12 @@
         }
 
         .nav-links {
+          display: flex;
+          gap: 20px;
+        }
+
+        /* hide Product on mobile */
+        .nav-links a:first-child {
           display: none;
         }
 
@@ -446,8 +452,10 @@
               <a href="#">Testimonials</a>
               <a href="#">Pricing</a>
             </div>
-            
-            <button class="btn-download"><i class="fab fa-apple apple-icon"></i>Download</button>
+
+            <button class="btn-download">
+              <i class="fab fa-apple apple-icon"></i>Download
+            </button>
           </div>
         </div>
       </div>
