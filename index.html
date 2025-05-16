@@ -307,7 +307,6 @@
         display: flex;
         gap: 15px;
         justify-content: right;
-        margin-bottom: 30px;
       }
 
       .footer-social a {
@@ -340,7 +339,15 @@
 
       .footer-legal {
         display: flex;
-        gap: 20px;
+        gap: 15px;
+      }
+
+      .footer-nav a:hover {
+        color: #3366ff; /* Blue color on hover */
+      }
+      /* Add space between footer nav links */
+      .footer-nav-links a {
+        margin-right: 16px;
       }
 
       @media (max-width: 768px) {
@@ -642,7 +649,7 @@
             align-items: center;
           "
         >
-          <div>
+          <div class="footer-nav-links">
             <a href="#">how it works</a>
             <a href="#">features</a>
             <a href="#">pricing</a>
