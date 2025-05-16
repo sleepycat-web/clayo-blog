@@ -89,6 +89,10 @@
         font-size: 14px;
       }
 
+      .nav-links a:hover {
+        color: #3366ff;
+      }
+
       .btn-download {
         background-color: #3366ff;
         color: white;
@@ -97,6 +101,12 @@
         padding: 8px 16px;
         font-size: 14px;
         cursor: pointer;
+      }
+
+      .apple-icon {
+        font-size: 16px;
+        color: #eee;
+        margin-right: 8px;
       }
 
       /* Main Content Styles */
@@ -180,6 +190,8 @@
         max-width: 800px;
         height: auto;
         border-radius: 10px;
+        max-height: 450px;
+        object-fit: cover;
       }
 
       .feature-section {
@@ -434,7 +446,8 @@
               <a href="#">Testimonials</a>
               <a href="#">Pricing</a>
             </div>
-            <button class="btn-download">Download</button>
+            
+            <button class="btn-download"><i class="fab fa-apple apple-icon"></i>Download</button>
           </div>
         </div>
       </div>
